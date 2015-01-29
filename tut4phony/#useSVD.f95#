@@ -1,0 +1,6 @@
+program useSVD
+  real :: A(1:10,1:10)
+  real:: B(1:10)
+
+
+end program useSVD
