@@ -1,0 +1,6 @@
+program diff
+  real :: x=0,h=0.02
+  real,parameter :: xMax=5
+
+
+end program diff
