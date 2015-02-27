@@ -24,7 +24,7 @@ program prog1
 !Adaptive (midpoint only)
   write(*,*) "The max error is ", error(pi/2.0,stepSize)
 
-  errorMax=error(pi/2.0,stepSize)
+  errorMax=0.0001 !error(pi/2.0,stepSize)
 
   currentX=startX
   do while(currentX<endX)
@@ -78,18 +78,28 @@ contains
     integer, optional :: method
     if(present(method)) then
        !err=(f''(b-a)**3)/12.0
-       if(fDoublePrime(x) .ne. 0) then
-          computeStepSizeForError = (abs(((12.0*err)/fDoublePrime(x)))**(1/3.0)) + smallestStep
-       else
+       !if(fDoublePrime(x) .ne. 0) then
+       computeStepSizeForError = (abs(((12.0*err)/fDoublePrime(x)))**(1/3.0)) 
+       !else
+       if(computeStepSizeForError>maxStep) then
           computeStepSizeForError=maxStep
        end if
-    else
-       if(fDoublePrime(x) .ne. 0) then
-       !err=(f''(b-a)**3)/24.0
-          computeStepSizeForError = (abs(((24.0*err)/fDoublePrime(x)))**(1/3.0)) + smallestStep
-       else
-          computeStepSizeForError = maxStep
+       if(computeStepSizeForError<smallestStep) then
+             computeStepSizeForError=smallestStep
        end if
-    end if
+    else
+       !if(fDoublePrime(x) .ne. 0) then
+       !err=(f''(b-a)**3)/24.0
+       computeStepSizeForError = (abs(((24.0*err)/fDoublePrime(x)))**(1/3.0)) + smallestStep
+       !else
+
+       if(computeStepSizeForError>maxStep) then
+          computeStepSizeForError=maxStep
+       end if
+       if(computeStepSizeForError<smallestStep) then
+             computeStepSizeForError=smallestStep
+       end if
+
+   end if
   end function computeStepSizeForError
 end program prog1
