@@ -1,0 +1,7 @@
+program prob1
+contains
+  function alpha(x1,x2)
+    real:: alpha,x1,x2
+    alpha=2.0/(x2-x1)
+  end function alpha
+end program prob1

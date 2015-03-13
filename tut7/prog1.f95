@@ -5,7 +5,7 @@ program prog1
   real :: stepSize,errorMax
   real:: integrationResult(2)=0
   real:: adaptiveStepSize,currentX
-  real:: integrationResultAdaptive=0,smallestStep=1e-9,maxStep=1e-1
+  real:: integrationResultAdaptive=0,smallestStep=1e-12,maxStep=1e-1
   integer :: iterationCount=0
 
 !Initializations
@@ -24,7 +24,7 @@ program prog1
 !Adaptive (midpoint only)
   write(*,*) "The max error is ", error(pi/2.0,stepSize)
 
-  errorMax=0.0001 !error(pi/2.0,stepSize)
+  errorMax=0.000001 !error(pi/2.0,stepSize)
 
   currentX=startX
   do while(currentX<endX)
