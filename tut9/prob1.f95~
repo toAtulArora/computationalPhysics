@@ -1,0 +1,15 @@
+program prob1
+  implicit none
+  real::x,y
+  rand(1248913543)
+
+contains
+  function f(x,y)
+    real::f,x,y
+    f=fFlex(x,y,lambda)
+  end function f
+  function fFlex(x,y,lambda)
+    real::f,x,y,lambda
+    f=(x*x*x*x) - (x*x) + y*y + lambda*(x-y)
+  end function fFlex
+end program prob1
